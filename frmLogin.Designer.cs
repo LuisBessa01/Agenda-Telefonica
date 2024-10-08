@@ -58,22 +58,28 @@
             // 
             // txtSenha
             // 
+            txtSenha.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSenha.Location = new Point(57, 184);
             txtSenha.Multiline = true;
             txtSenha.Name = "txtSenha";
+            txtSenha.PasswordChar = '°';
             txtSenha.Size = new Size(514, 42);
             txtSenha.TabIndex = 3;
+            txtSenha.TextChanged += txtSenha_TextChanged;
             // 
             // txtUsuario
             // 
+            txtUsuario.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsuario.Location = new Point(57, 84);
             txtUsuario.Multiline = true;
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(514, 42);
             txtUsuario.TabIndex = 4;
+            txtUsuario.TextChanged += txtUsuario_TextChanged;
             // 
             // btnEntrar
             // 
+            btnEntrar.Enabled = false;
             btnEntrar.Font = new Font("Segoe UI Semibold", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEntrar.Location = new Point(57, 264);
             btnEntrar.Name = "btnEntrar";
@@ -93,7 +99,7 @@
             lklCadastrar.Text = "Não possui uma conta? clique aqui para se cadastrar";
             lklCadastrar.LinkClicked += lklCadastrar_LinkClicked;
             // 
-            // Form1
+            // frmLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -105,8 +111,9 @@
             Controls.Add(txtSenha);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Form1";
+            Name = "frmLogin";
             Text = "Login";
+            FormClosed += frmLogin_FormClosed;
             ResumeLayout(false);
             PerformLayout();
         }

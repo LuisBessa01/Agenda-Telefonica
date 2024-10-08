@@ -94,46 +94,57 @@
             // 
             // txtNome
             // 
+            txtNome.Font = new Font("Segoe UI", 14F);
             txtNome.Location = new Point(33, 66);
             txtNome.Multiline = true;
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(345, 34);
             txtNome.TabIndex = 5;
+            txtNome.TextChanged += txtNome_TextChanged;
             // 
             // txtUsuario
             // 
+            txtUsuario.Font = new Font("Segoe UI", 14F);
             txtUsuario.Location = new Point(444, 66);
             txtUsuario.Multiline = true;
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(345, 34);
             txtUsuario.TabIndex = 6;
+            txtUsuario.TextChanged += txtUsuario_TextChanged;
             // 
             // txtTelefone
             // 
+            txtTelefone.Font = new Font("Segoe UI", 14F);
             txtTelefone.Location = new Point(33, 238);
             txtTelefone.Multiline = true;
             txtTelefone.Name = "txtTelefone";
             txtTelefone.Size = new Size(345, 34);
             txtTelefone.TabIndex = 7;
+            txtTelefone.TextChanged += txtTelefone_TextChanged;
             // 
             // txtSenha
             // 
+            txtSenha.Font = new Font("Segoe UI", 14F);
             txtSenha.Location = new Point(444, 238);
             txtSenha.Multiline = true;
             txtSenha.Name = "txtSenha";
             txtSenha.Size = new Size(345, 34);
             txtSenha.TabIndex = 8;
+            txtSenha.TextChanged += txtSenha_TextChanged;
             // 
             // txtConfirmarSenha
             // 
+            txtConfirmarSenha.Font = new Font("Segoe UI", 14F);
             txtConfirmarSenha.Location = new Point(33, 406);
             txtConfirmarSenha.Multiline = true;
             txtConfirmarSenha.Name = "txtConfirmarSenha";
             txtConfirmarSenha.Size = new Size(345, 34);
             txtConfirmarSenha.TabIndex = 9;
+            txtConfirmarSenha.TextChanged += txtConfirmarSenha_TextChanged;
             // 
             // btnCadastrar
             // 
+            btnCadastrar.Enabled = false;
             btnCadastrar.Font = new Font("Segoe UI Semibold", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCadastrar.Location = new Point(33, 525);
             btnCadastrar.Name = "btnCadastrar";
@@ -151,6 +162,7 @@
             btnCancelar.TabIndex = 11;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // frmCadastro
             // 
@@ -172,6 +184,7 @@
             Controls.Add(label1);
             Name = "frmCadastro";
             Text = "Cadastrar-se";
+            FormClosed += frmCadastro_FormClosed;
             ResumeLayout(false);
             PerformLayout();
         }
