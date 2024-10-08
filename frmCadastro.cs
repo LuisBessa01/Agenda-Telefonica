@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,10 +28,10 @@ namespace Agenda_Telefonica
                 possuiErro = true;
             }
             if (txtUsuario.Text == "")
-            { 
+            {
                 possuiErro = true;
             }
-            if (txtSenha.Text.Length <8)
+            if (txtSenha.Text.Length < 8)
             {
                 possuiErro = true;
             }
@@ -51,8 +52,8 @@ namespace Agenda_Telefonica
             //Verifica se o nome, usuário, telefone, senha e confirmação da senha estão preenchidos.
             //senha e confirmação da senha devem possuir mais de 8 caracteres e serem iguais
             if (txtNome.Text != "" && txtUsuario.Text != "" &&
-                txtTelefone.Text != "" && txtSenha.Text.Length >=8 &&
-                txtConfirmarSenha.Text.Length >=8 && txtSenha.Text == txtConfirmarSenha.Text)
+                txtSenha.Text.Length >= 8 &&
+                txtConfirmarSenha.Text.Length >= 8 && txtSenha.Text == txtConfirmarSenha.Text)
             {
                 btnCadastrar.Enabled = true;
             }
@@ -97,6 +98,24 @@ namespace Agenda_Telefonica
         private void txtConfirmarSenha_TextChanged(object sender, EventArgs e)
         {
             presencaCamposCadastro();
+        }
+
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            //uma string com as info pra logar no bnco de dados
+            string stringConexao = "Server=127.0.0.1;Database=db_agenda;User ID=root;Password=root;";
+            //criando uma conexão
+            MySqlConnection conexaomysql = new MySqlConnection(stringConexao);
+            //abrindo a conexão
+            conexaomysql.Open();
+            //código em SQL pra inserir um usuário
+            string codigomysql = $"insert into tb_usuarios (nome, usuario, telefone, senha) values ('{txtNome.Text}','{txtUsuario.Text}','{txtTelefone.Text}','{txtSenha.Text}')";
+            //criando o comando
+            MySqlCommand comandomysql = new MySqlCommand (codigomysql,conexaomysql );
+            //execução a inscrição SQL no banco
+            comandomysql.ExecuteNonQuery();
+            //fechando a cenoxão
+            conexaomysql.Close();
         }
     }
 }
