@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Agenda_Telefonica.Data;
+using MySql.Data.MySqlClient;
+using Mysqlx;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,20 +104,26 @@ namespace Agenda_Telefonica
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            //uma string com as info pra logar no bnco de dados
-            string stringConexao = "Server=127.0.0.1;Database=db_agenda;User ID=root;Password=root;";
-            //criando uma conexão
-            MySqlConnection conexaomysql = new MySqlConnection(stringConexao);
+            MySqlConnection conexaomysql = conexaoDB.Criarconexaomysql();
+
             //abrindo a conexão
             conexaomysql.Open();
             //código em SQL pra inserir um usuário
-            string codigomysql = $"insert into tb_usuarios (nome, usuario, telefone, senha) values ('{txtNome.Text}','{txtUsuario.Text}','{txtTelefone.Text}','{txtSenha.Text}')";
+            string codigomysql = $"insert into tb_usuarios (nome, usuario, telefone, senha) values (@nome, @usuario, @telefone, @senha)";
             //criando o comando
             MySqlCommand comandomysql = new MySqlCommand (codigomysql,conexaomysql );
+            //parametros para executar o comando
+            comandomysql.Parameters.AddWithValue("@nome", txtNome.Text);
+            comandomysql.Parameters.AddWithValue("@usuario", txtUsuario.Text);
+            comandomysql.Parameters.AddWithValue("@telefone", txtTelefone.Text);
+            comandomysql.Parameters.AddWithValue("@senha", txtSenha.Text);
             //execução a inscrição SQL no banco
             comandomysql.ExecuteNonQuery();
             //fechando a cenoxão
             conexaomysql.Close();
+
+            MessageBox.Show("Usuário Cadastrado.");
+            this.Close();
         }
     }
 }
