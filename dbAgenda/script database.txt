@@ -1,0 +1,15 @@
+create database if not exists db_agenda;
+
+use db_agenda;
+
+create table if not exists tb_usuarios (
+	nome varchar(60) not null, 
+	usuario varchar(50) primary key, 
+	telefone varchar(15), 
+	senha varchar(12) not null
+    );
+    
+create table if not exists tb_categorias (
+	ID_categoria int primary key auto_increment,
+    nome varchar(50)
+    );

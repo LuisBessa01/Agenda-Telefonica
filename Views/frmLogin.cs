@@ -1,3 +1,6 @@
+using Agenda_Telefonica.Controller;
+using Agenda_Telefonica.Views;
+
 namespace Agenda_Telefonica
 {
     public partial class frmLogin : Form
@@ -39,6 +42,24 @@ namespace Agenda_Telefonica
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnEntrar_Click(object sender, EventArgs e)
+        {
+            UserController login = new UserController();
+
+            bool sucesso = login.LoginUser(txtUsuario.Text, txtSenha.Text);
+
+            if (sucesso == true)
+            {
+                frmPrincipal formPrincipal = new frmPrincipal();
+                formPrincipal.ShowDialog();
+            }
+            else 
+            {
+                MessageBox.Show("Login errado");
+            }
+
         }
     }
 }
