@@ -53,6 +53,7 @@ namespace Agenda_Telefonica
             if (sucesso == true)
             {
                 frmPrincipal formPrincipal = new frmPrincipal();
+                this.Hide();
                 formPrincipal.ShowDialog();
             }
             else 
