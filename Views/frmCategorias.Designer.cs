@@ -97,6 +97,7 @@
             Controls.Add(label1);
             Name = "frmCategorias";
             Text = "frmCategorias";
+            Load += frmCategorias_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCategorias).EndInit();
             ResumeLayout(false);
             PerformLayout();

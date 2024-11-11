@@ -17,6 +17,14 @@ namespace Agenda_Telefonica.Views
         {
             InitializeComponent();
         }
+        private void frmCategorias_Load(object sender, EventArgs e)
+        {
+            CategoryController controleCategoria = new CategoryController();
+
+            DataTable tabela = controleCategoria.GetCategorias();
+
+            dgvCategorias.DataSource = tabela;
+        }
 
         private void btnAddCategoria_Click(object sender, EventArgs e)
         {
