@@ -21,10 +21,10 @@ namespace Agenda_Telefonica.Views
         private void btnAddCategoria_Click(object sender, EventArgs e)
         {
             // classe     |  nome var    |   classe
-            CategoryController cadastrar = new CategoryController();
+            CategoryController controleCategoria = new CategoryController();
 
             //retorn func |nome var | nome func | parametros
-            bool sucesso = cadastrar.AddCategory(txtCategoria.Text);
+            bool sucesso = controleCategoria.AddCategory(txtCategoria.Text);
 
             if (sucesso == true)
             {
@@ -34,6 +34,10 @@ namespace Agenda_Telefonica.Views
             {
                 MessageBox.Show("Ocorreu um erro durante o cadastro, tente novamente");
             }
+
+            DataTable tabela = controleCategoria.GetCategorias();
+
+            dgvCategorias.DataSource = tabela;
         }
     }
 }

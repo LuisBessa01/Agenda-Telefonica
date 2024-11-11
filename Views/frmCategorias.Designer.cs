@@ -32,6 +32,8 @@
             txtCategoria = new TextBox();
             label2 = new Label();
             btnAddCategoria = new Button();
+            dgvCategorias = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvCategorias).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -73,18 +75,29 @@
             btnAddCategoria.UseVisualStyleBackColor = true;
             btnAddCategoria.Click += btnAddCategoria_Click;
             // 
+            // dgvCategorias
+            // 
+            dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCategorias.Location = new Point(346, 27);
+            dgvCategorias.Name = "dgvCategorias";
+            dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCategorias.Size = new Size(419, 260);
+            dgvCategorias.TabIndex = 4;
+            // 
             // frmCategorias
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PaleGreen;
-            ClientSize = new Size(346, 312);
+            ClientSize = new Size(792, 312);
+            Controls.Add(dgvCategorias);
             Controls.Add(btnAddCategoria);
             Controls.Add(label2);
             Controls.Add(txtCategoria);
             Controls.Add(label1);
             Name = "frmCategorias";
             Text = "frmCategorias";
+            ((System.ComponentModel.ISupportInitialize)dgvCategorias).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -95,5 +108,6 @@
         private TextBox txtCategoria;
         private Label label2;
         private Button btnAddCategoria;
+        private DataGridView dgvCategorias;
     }
 }
