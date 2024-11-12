@@ -11,5 +11,5 @@ create table if not exists tb_usuarios (
     
 create table if not exists tb_categorias (
 	ID_categoria int primary key auto_increment,
-    nome varchar(50)
+    nome_categoria varchar(50)
     );

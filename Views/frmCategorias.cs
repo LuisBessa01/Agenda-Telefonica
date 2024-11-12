@@ -13,17 +13,20 @@ namespace Agenda_Telefonica.Views
 {
     public partial class frmCategorias : Form
     {
+        private void AttTabela()
+        {
+            CategoryController controleCategoria = new CategoryController();
+            DataTable tabela = controleCategoria.GetCategorias();
+            dgvCategorias.DataSource = tabela;
+        }
+
         public frmCategorias()
         {
             InitializeComponent();
         }
         private void frmCategorias_Load(object sender, EventArgs e)
         {
-            CategoryController controleCategoria = new CategoryController();
-
-            DataTable tabela = controleCategoria.GetCategorias();
-
-            dgvCategorias.DataSource = tabela;
+            AttTabela();
         }
 
         private void btnAddCategoria_Click(object sender, EventArgs e)
@@ -42,10 +45,26 @@ namespace Agenda_Telefonica.Views
             {
                 MessageBox.Show("Ocorreu um erro durante o cadastro, tente novamente");
             }
+            AttTabela();
+        }
 
-            DataTable tabela = controleCategoria.GetCategorias();
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int celulaID = Convert.ToInt32(dgvCategorias.SelectedRows[0].Cells["Código"].Value);
+            CategoryController controleCategoria = new CategoryController();
 
-            dgvCategorias.DataSource = tabela;
+            bool sucesso = controleCategoria.DelCategoria(celulaID);
+
+            if (sucesso == true)
+            {
+                MessageBox.Show("Categoria deletada com sucesso");
+            }
+            else
+            {
+                MessageBox.Show("Houve um erro ao deletar a categoria");
+            }
+
+            AttTabela();
         }
     }
 }

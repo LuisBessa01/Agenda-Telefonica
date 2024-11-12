@@ -35,9 +35,15 @@ namespace Agenda_Telefonica.Views
         private void btnCadastrarCategoria_Click(object sender, EventArgs e)
         {
             frmCategorias formCategorias = new frmCategorias();
-            
+
             formCategorias.ShowDialog();
 
+        }
+
+        private void btnCadastrarUsuarios_Click(object sender, EventArgs e)
+        {
+            frmUsuarios formUsuarios = new frmUsuarios();
+            formUsuarios.ShowDialog();  
         }
     }
 }

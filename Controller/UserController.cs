@@ -2,7 +2,9 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -84,6 +86,75 @@ namespace Agenda_Telefonica.Controller
             catch
             {
                 return false;
+            }
+        }
+
+        public DataTable GetUsers()
+        {
+            MySqlConnection conexao = null;
+            try
+            {
+                conexao = conexaoDB.Criarconexaomysql();
+
+                string sql = "SELECT  usuario AS 'Usuário', nome AS 'Nome', telefone AS 'Telefone' FROM tb_usuarios;";
+
+                conexao.Open();
+
+                MySqlDataAdapter adaptador = new MySqlDataAdapter(sql, conexao);
+
+                DataTable tabela = new DataTable();
+
+                adaptador.Fill(tabela);
+
+                return tabela;
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"erro ao recuperar categorias: {erro.Message}");
+
+                return new DataTable();
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
+
+        public bool DelUser(string usuario)
+        {
+            MySqlConnection conexao = null;
+
+            try
+            {
+                conexao = conexaoDB.Criarconexaomysql();
+
+                string sql = "DELETE FROM tb_usuarios WHERE usuario = @usuario;";
+
+                conexao.Open();
+
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                comando.Parameters.AddWithValue("@usuario", usuario);
+
+                int quantidadeAfetada = comando.ExecuteNonQuery();
+
+                if (quantidadeAfetada > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao deletar o usuario: {erro.Message}");
+                return false;
+            }
+            finally
+            {
+                conexao.Close();
             }
         }
     }

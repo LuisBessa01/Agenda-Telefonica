@@ -33,6 +33,7 @@
             label2 = new Label();
             btnAddCategoria = new Button();
             dgvCategorias = new DataGridView();
+            btnDelete = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCategorias).BeginInit();
             SuspendLayout();
             // 
@@ -67,9 +68,9 @@
             // btnAddCategoria
             // 
             btnAddCategoria.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAddCategoria.Location = new Point(87, 200);
+            btnAddCategoria.Location = new Point(56, 202);
             btnAddCategoria.Name = "btnAddCategoria";
-            btnAddCategoria.Size = new Size(159, 59);
+            btnAddCategoria.Size = new Size(223, 46);
             btnAddCategoria.TabIndex = 3;
             btnAddCategoria.Text = "Adicionar";
             btnAddCategoria.UseVisualStyleBackColor = true;
@@ -78,18 +79,29 @@
             // dgvCategorias
             // 
             dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCategorias.Location = new Point(346, 27);
+            dgvCategorias.Location = new Point(360, 27);
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCategorias.Size = new Size(419, 260);
             dgvCategorias.TabIndex = 4;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(785, 264);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(75, 23);
+            btnDelete.TabIndex = 6;
+            btnDelete.Text = "Deletar";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // frmCategorias
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PaleGreen;
-            ClientSize = new Size(792, 312);
+            ClientSize = new Size(878, 312);
+            Controls.Add(btnDelete);
             Controls.Add(dgvCategorias);
             Controls.Add(btnAddCategoria);
             Controls.Add(label2);
@@ -110,5 +122,6 @@
         private Label label2;
         private Button btnAddCategoria;
         private DataGridView dgvCategorias;
+        private Button btnDelete;
     }
 }

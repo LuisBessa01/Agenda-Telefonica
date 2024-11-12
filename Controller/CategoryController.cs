@@ -46,7 +46,7 @@ namespace Agenda_Telefonica.Controller
 
             catch (Exception erro)
             {
-                MessageBox.Show($"Erro ao efetuar o cadastro:{erro.Message}");
+                MessageBox.Show($"Erro ao criar categoria:{erro.Message}");
                 return false;
             }
             finally
@@ -92,5 +92,42 @@ namespace Agenda_Telefonica.Controller
             }
         }
 
+        public bool DelCategoria(int idCategoria)
+        {
+            MySqlConnection conexao = null;
+
+            try
+            {
+                conexao = conexaoDB.Criarconexaomysql();
+
+                string sql = "DELETE FROM tb_categorias WHERE ID_categoria = @idCategoria;";
+
+                conexao.Open();
+
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                comando.Parameters.AddWithValue("@idCategoria", idCategoria);
+
+                int quantidadeAfetada = comando.ExecuteNonQuery();
+
+                if (quantidadeAfetada > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao deletar a categoria:{erro.Message}");
+                return false;
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
     }
 }
