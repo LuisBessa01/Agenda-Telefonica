@@ -5,6 +5,7 @@ namespace Agenda_Telefonica
 {
     public partial class frmLogin : Form
     {
+
         public frmLogin()
         {
             InitializeComponent();
@@ -52,6 +53,10 @@ namespace Agenda_Telefonica
 
             if (sucesso == true)
             {
+                frmUsuarios formUsuarios = new frmUsuarios();
+                formUsuarios.userLogado = txtUsuario.Text;
+
+
                 frmPrincipal formPrincipal = new frmPrincipal();
                 this.Hide();
                 formPrincipal.ShowDialog();

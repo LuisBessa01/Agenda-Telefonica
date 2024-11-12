@@ -24,7 +24,7 @@ namespace Agenda_Telefonica.Views
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void frmPrincipal_FormClosed(object sender, FormClosedEventArgs e)

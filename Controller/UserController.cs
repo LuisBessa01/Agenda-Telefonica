@@ -157,5 +157,43 @@ namespace Agenda_Telefonica.Controller
                 conexao.Close();
             }
         }
+
+        public bool ModSenha (string usuario, string novaSenha)
+        {
+            MySqlConnection conexao = null;
+            try
+            {
+                conexao = conexaoDB.Criarconexaomysql();
+
+                string sql = "UPDATE tb_usuarios SET senha= '@novaSenha' WHERE usuario = '@usuario';";
+                
+                conexao.Open();
+
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                comando.Parameters.AddWithValue("@usuario", usuario);
+                comando.Parameters.AddWithValue("@novaSenha", novaSenha);
+
+                int quantidadeAfetada = comando.ExecuteNonQuery();
+
+                if (quantidadeAfetada > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch ( Exception erro )
+            {
+                MessageBox.Show($"erro ao alterar senha:{erro.Message}");
+                return false;
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
     }
 }

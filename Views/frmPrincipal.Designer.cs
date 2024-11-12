@@ -36,6 +36,7 @@
             btnCadastrarCategoria = new ToolStripMenuItem();
             btnCadastrarUsuarios = new ToolStripMenuItem();
             categoriasToolStripMenuItem = new ToolStripMenuItem();
+            txtTeste = new TextBox();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -96,11 +97,19 @@
             categoriasToolStripMenuItem.Size = new Size(180, 22);
             categoriasToolStripMenuItem.Text = "maisoutracoisa";
             // 
+            // txtTeste
+            // 
+            txtTeste.Location = new Point(137, 132);
+            txtTeste.Name = "txtTeste";
+            txtTeste.Size = new Size(100, 23);
+            txtTeste.TabIndex = 1;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtTeste);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "frmPrincipal";
@@ -123,5 +132,6 @@
         private ToolStripMenuItem sairToolStripMenuItem;
         private ToolStripMenuItem btnCadastrarCategoria;
         private ToolStripMenuItem btnCadastrarUsuarios;
+        private TextBox txtTeste;
     }
 }
