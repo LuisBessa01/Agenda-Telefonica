@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Agenda_Telefonica.Data;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +26,7 @@ namespace Agenda_Telefonica.Views
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void frmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
@@ -43,7 +45,22 @@ namespace Agenda_Telefonica.Views
         private void btnCadastrarUsuarios_Click(object sender, EventArgs e)
         {
             frmUsuarios formUsuarios = new frmUsuarios();
-            formUsuarios.ShowDialog();  
+            formUsuarios.ShowDialog();
+        }
+
+        private void btnTeste_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MySqlConnection conexao = conexaoDB.Criarconexaomysql("usuario", "123");
+                conexao.Open();
+
+                MessageBox.Show("DEU CERTO");
+            }
+            catch (Exception erro) 
+            {
+                MessageBox.Show($"deu errado {erro.Message}");
+            }
         }
     }
 }

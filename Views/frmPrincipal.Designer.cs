@@ -37,6 +37,7 @@
             btnCadastrarUsuarios = new ToolStripMenuItem();
             categoriasToolStripMenuItem = new ToolStripMenuItem();
             txtTeste = new TextBox();
+            btnTeste = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -74,27 +75,27 @@
             // 
             cadastrarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnCadastrarCategoria, btnCadastrarUsuarios, categoriasToolStripMenuItem });
             cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
-            cadastrarToolStripMenuItem.Size = new Size(180, 22);
+            cadastrarToolStripMenuItem.Size = new Size(124, 22);
             cadastrarToolStripMenuItem.Text = "&Cadastrar";
             // 
             // btnCadastrarCategoria
             // 
             btnCadastrarCategoria.Name = "btnCadastrarCategoria";
-            btnCadastrarCategoria.Size = new Size(180, 22);
+            btnCadastrarCategoria.Size = new Size(154, 22);
             btnCadastrarCategoria.Text = "Ca&tegorias";
             btnCadastrarCategoria.Click += btnCadastrarCategoria_Click;
             // 
             // btnCadastrarUsuarios
             // 
             btnCadastrarUsuarios.Name = "btnCadastrarUsuarios";
-            btnCadastrarUsuarios.Size = new Size(180, 22);
+            btnCadastrarUsuarios.Size = new Size(154, 22);
             btnCadastrarUsuarios.Text = "&Usuários";
             btnCadastrarUsuarios.Click += btnCadastrarUsuarios_Click;
             // 
             // categoriasToolStripMenuItem
             // 
             categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            categoriasToolStripMenuItem.Size = new Size(180, 22);
+            categoriasToolStripMenuItem.Size = new Size(154, 22);
             categoriasToolStripMenuItem.Text = "maisoutracoisa";
             // 
             // txtTeste
@@ -104,11 +105,22 @@
             txtTeste.Size = new Size(100, 23);
             txtTeste.TabIndex = 1;
             // 
+            // btnTeste
+            // 
+            btnTeste.Location = new Point(445, 184);
+            btnTeste.Name = "btnTeste";
+            btnTeste.Size = new Size(75, 23);
+            btnTeste.TabIndex = 2;
+            btnTeste.Text = "button1";
+            btnTeste.UseVisualStyleBackColor = true;
+            btnTeste.Click += btnTeste_Click;
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnTeste);
             Controls.Add(txtTeste);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -133,5 +145,6 @@
         private ToolStripMenuItem btnCadastrarCategoria;
         private ToolStripMenuItem btnCadastrarUsuarios;
         private TextBox txtTeste;
+        private Button btnTeste;
     }
 }

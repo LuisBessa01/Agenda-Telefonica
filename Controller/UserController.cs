@@ -14,13 +14,14 @@ namespace Agenda_Telefonica.Controller
     {
         public bool AddUser(string nome, string usuario, string telefone, string senha)
         {
+            MySqlConnection conexao = null;
             try
             {
                 // cria uma variavel que conecta na classe.função do arquivo conexaoDB
-                MySqlConnection conexao = conexaoDB.Criarconexaomysql();
+                conexao = conexaoDB.Criarconexaomysql();
 
                 //inserir dados na tabela do sql
-                string sql = "INSERT INTO tb_usuarios(nome, usuario, telefone, senha) VALUES (@nome, @usuario, @telefone, @senha);";
+                string sql = @$"INSERT INTO tb_usuarios(nome, usuario, telefone, senha) VALUES (@nome, @usuario, @telefone, @senha);";
 
                 conexao.Open();
 
@@ -33,10 +34,11 @@ namespace Agenda_Telefonica.Controller
 
                 int quantidadeAfetada = comando.ExecuteNonQuery();
 
-                conexao.Close();
+
 
                 if (quantidadeAfetada > 0)
                 {
+                    this.CreateUser(usuario, senha);
                     return true;
                 }
                 else
@@ -45,11 +47,45 @@ namespace Agenda_Telefonica.Controller
                 }
 
             }
-
             catch (Exception erro)
             {
                 MessageBox.Show($"Erro ao efetuar o cadastro:{erro.Message}");
                 return false;
+            }
+            finally
+            {
+                conexao.Close();
+            }
+
+        }
+
+        private bool CreateUser (string usuario, string senha)
+        {
+            MySqlConnection conexao = null;
+            try
+            {
+                conexao = conexaoDB.Criarconexaomysql();
+
+                string mysqlUser = $@"CREATE USER '{usuario}'@'%' IDENTIFIED BY '{senha}';
+                    GRANT ALL PRIVILEGES ON db_agenda.* TO '{usuario}'@'%';
+                    FLUSH PRIVILEGES;";
+
+                conexao.Close();
+
+                MySqlCommand comando = new MySqlCommand(mysqlUser, conexao);
+
+                comando.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao efetuar o cadastro:{erro.Message}");
+                return false;
+            }
+            finally
+            {
+                conexao.Close();
             }
 
         }

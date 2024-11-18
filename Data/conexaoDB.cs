@@ -18,5 +18,15 @@ namespace Agenda_Telefonica.Data
 
             return conexaomysql;
         }
+
+        static public MySqlConnection Criarconexaomysql(string usuario, string senha)
+        {
+            //uma string com as info pra logar no bnco de dados
+            string stringConexao = $"Server=127.0.0.1;Database=db_agenda;User ID={usuario};Password={senha};";
+            //criando uma conexão
+            MySqlConnection conexaomysql = new MySqlConnection(stringConexao);
+
+            return conexaomysql;
+        }
     }
 }
