@@ -1,4 +1,5 @@
 ﻿using Agenda_Telefonica.Data;
+using Agenda_Telefonica.GlobalVar;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -50,17 +51,12 @@ namespace Agenda_Telefonica.Views
 
         private void btnTeste_Click(object sender, EventArgs e)
         {
-            try
-            {
-                MySqlConnection conexao = conexaoDB.Criarconexaomysql("usuario", "123");
-                conexao.Open();
+            SessionAgenda.usuario = txtTeste.Text;
+        }
 
-                MessageBox.Show("DEU CERTO");
-            }
-            catch (Exception erro) 
-            {
-                MessageBox.Show($"deu errado {erro.Message}");
-            }
+        private void btnTeste2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(SessionAgenda.usuario);
         }
     }
 }

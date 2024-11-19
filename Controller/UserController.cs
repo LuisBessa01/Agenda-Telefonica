@@ -70,7 +70,7 @@ namespace Agenda_Telefonica.Controller
                     GRANT ALL PRIVILEGES ON db_agenda.* TO '{usuario}'@'%';
                     FLUSH PRIVILEGES;";
 
-                conexao.Close();
+                conexao.Open();
 
                 MySqlCommand comando = new MySqlCommand(mysqlUser, conexao);
 
