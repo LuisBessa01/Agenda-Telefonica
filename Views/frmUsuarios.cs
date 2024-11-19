@@ -1,4 +1,5 @@
 ﻿using Agenda_Telefonica.Controller;
+using Agenda_Telefonica.GlobalVar;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,6 @@ namespace Agenda_Telefonica.Views
 {
     public partial class frmUsuarios : Form
     {
-        public string userLogado;
         private void AttTabela()
         {
             UserController controleUsuarios = new UserController();
@@ -70,14 +70,13 @@ namespace Agenda_Telefonica.Views
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
             AttTabela();
-            txtNovaSenha.Text = userLogado;
         }
 
         private void btnConfirmarSenha_Click(object sender, EventArgs e)
         {
             UserController controleUser = new UserController();
 
-            controleUser.ModSenha(userLogado, txtNovaSenha.Text);
+            controleUser.ModSenha(SessionAgenda.usuario, txtNovaSenha.Text);
         }
 
         private void txtNovaSenha_TextChanged(object sender, EventArgs e)

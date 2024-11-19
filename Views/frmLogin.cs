@@ -1,4 +1,5 @@
 using Agenda_Telefonica.Controller;
+using Agenda_Telefonica.GlobalVar;
 using Agenda_Telefonica.Views;
 
 namespace Agenda_Telefonica
@@ -53,10 +54,10 @@ namespace Agenda_Telefonica
 
             if (sucesso == true)
             {
-                frmUsuarios formUsuarios = new frmUsuarios();
-                formUsuarios.userLogado = txtUsuario.Text;
 
-
+                SessionAgenda.usuario = txtUsuario.Text;
+                SessionAgenda.senha = txtSenha.Text;
+                //SessionAgenda.nome
                 frmPrincipal formPrincipal = new frmPrincipal();
                 this.Hide();
                 formPrincipal.ShowDialog();

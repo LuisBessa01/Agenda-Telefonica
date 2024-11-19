@@ -1,4 +1,5 @@
 ﻿using Agenda_Telefonica.Data;
+using Agenda_Telefonica.GlobalVar;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Agenda_Telefonica.Controller
             try
             {
                 // cria uma variavel que conecta na classe.função do arquivo conexaoDB
-                conexao = conexaoDB.Criarconexaomysql();
+                conexao = conexaoDB.Criarconexaomysql(SessionAgenda.usuario, SessionAgenda.senha);
 
                 // insere os dados na tabela de categoria
                 string sql = "INSERT INTO tb_categorias (nome_categoria) VALUES (@categoria);";
@@ -62,10 +63,11 @@ namespace Agenda_Telefonica.Controller
             try
             {
                 // cria uma variavel que conecta na classe.função do arquivo conexaoDB
-                conexao = conexaoDB.Criarconexaomysql();
+                conexao = conexaoDB.Criarconexaomysql(SessionAgenda.usuario, SessionAgenda.senha);
 
                 // codigo a ser inserido no mysql para exibir todos os dados da tabela
-                string sql = "SELECT ID_categoria AS 'Código', nome_categoria AS 'Categorias' FROM tb_categorias;";
+                string sql = @$"SELECT ID_categoria AS 'Código', nome_categoria AS 'Categorias' FROM tb_categorias 
+                                WHERE usuario LIKE '{SessionAgenda.usuario}%';";
 
                 conexao.Open();
 
@@ -98,7 +100,7 @@ namespace Agenda_Telefonica.Controller
 
             try
             {
-                conexao = conexaoDB.Criarconexaomysql();
+                conexao = conexaoDB.Criarconexaomysql(SessionAgenda.usuario, SessionAgenda.senha);
 
                 string sql = "DELETE FROM tb_categorias WHERE ID_categoria = @idCategoria;";
 
