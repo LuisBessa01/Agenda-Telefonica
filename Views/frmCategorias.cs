@@ -66,5 +66,33 @@ namespace Agenda_Telefonica.Views
 
             AttTabela();
         }
+
+        private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string nomeCategoria = dgvCategorias.SelectedRows[0].Cells["Categorias"].Value.ToString();
+
+            txtCategoria.Text = nomeCategoria;
+        }
+
+        private void btnRenomear_Click(object sender, EventArgs e)
+        {
+            int celulaID = Convert.ToInt32(dgvCategorias.SelectedRows[0].Cells["Código"].Value);
+            CategoryController controleCategoria = new CategoryController();
+
+            string nomeCategoria = txtCategoria.Text;
+
+            bool sucesso = controleCategoria.UpdateCategoria(celulaID, nomeCategoria);
+
+            if (sucesso == true)
+            {
+                MessageBox.Show("Categoria atualizada com sucesso");
+            }
+            else
+            {
+                MessageBox.Show("Houve um erro ao atualizar a categoria");
+            }
+
+            AttTabela();
+        }
     }
 }

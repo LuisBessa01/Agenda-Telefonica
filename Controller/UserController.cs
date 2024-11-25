@@ -1,4 +1,5 @@
 ﻿using Agenda_Telefonica.Data;
+using Agenda_Telefonica.GlobalVar;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;

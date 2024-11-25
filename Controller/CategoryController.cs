@@ -33,7 +33,7 @@ namespace Agenda_Telefonica.Controller
                 // executa o comando e retorna quantas linhas do db foi afetada
                 int quantidadeAfetada = comando.ExecuteNonQuery();
 
-                
+
 
                 if (quantidadeAfetada > 0)
                 {
@@ -88,7 +88,7 @@ namespace Agenda_Telefonica.Controller
 
                 return new DataTable();
             }
-            finally 
+            finally
             {
                 conexao.Close();
             }
@@ -131,5 +131,47 @@ namespace Agenda_Telefonica.Controller
                 conexao.Close();
             }
         }
+
+        public bool UpdateCategoria(int idCategoria, string nomeCategoria)
+        {
+            MySqlConnection conexao = null;
+
+            try
+            {
+                conexao = conexaoDB.Criarconexaomysql(SessionAgenda.usuario, SessionAgenda.senha);
+
+                string sql = @$"UPDATE tb_categorias
+                                SET nome_categoria = @nomeCategoria
+                                WHERE ID_categoria = @idCategoria;";
+                conexao.Open();
+
+                MySqlCommand comando = new MySqlCommand (sql, conexao);
+
+                comando.Parameters.AddWithValue("idCategoria", idCategoria);
+                comando.Parameters.AddWithValue("@nomeCategoria", nomeCategoria);
+
+                int quantidadeAfetada = comando.ExecuteNonQuery();
+
+                if (quantidadeAfetada > 0)
+                { 
+                    return true; 
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao atualizar a categoria:{erro.Message}");
+                return false;
+            }
+            finally
+            {
+                conexao.Close();
+            }
+
+        }
+    
     }
 }

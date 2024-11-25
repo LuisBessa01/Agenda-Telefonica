@@ -16,16 +16,69 @@ CREATE TABLE IF NOT EXISTS tb_categorias (
     );
 
 DELIMITER $$
-CREATE TRIGGER tgInsertCategoria
+CREATE TRIGGER tg_insert_categoria
 	BEFORE
 	INSERT
 	ON tb_categorias
 	FOR EACH ROW
 		BEGIN
-			SET NEW.usuario = CURRENT_USER();
+			SET NEW.usuario = USER();
 		END$$
         
 DELIMITER ;
-	
+
+CREATE TABLE IF NOT EXISTS tb_log (
+	ID_log int primary key auto_increment,
+	usuario varchar(50) not null,
+    data_hora timestamp not null,
+    descricao varchar(100)
+
+);
+
+DELIMITER $$
+CREATE TRIGGER tg_log_delete_categoria 
+	AFTER
+    DELETE
+    ON tb_categorias
+	FOR EACH ROW
+    BEGIN
+		INSERT INTO tb_log (usuario, data_hora, descricao)
+			VALUES(
+				USER(), 
+				CURRENT_TIMESTAMP(),
+                CONCAT('A categoria ', OLD.nome_categoria, ' foi EXCLUIDA.')
+                );
+    END$$
+    
+CREATE TRIGGER tg_log_insert_categoria
+	AFTER
+    INSERT
+    ON tb_categorias
+    FOR EACH ROW
+    BEGIN
+		INSERT INTO tb_log (usuario, data_hora, descricao)
+			VALUES(
+				USER(),
+                current_timestamp(),
+                CONCAT('A categoria ', NEW.nome_categoria, ' foi ADICIONADA.')
+                );
+    END$$
+    
+    CREATE TRIGGER tb_log_update_categoria
+		AFTER
+        UPDATE
+        ON tb_categorias
+        FOR EACH ROW
+        BEGIN
+			INSERT INTO tb_log (usuario, data_hora, descricao)
+				VALUES(
+					USER(),
+                    CURRENT_TIMESTAMP(),
+                    CONCAT('A categoria ', OLD.nome_categoria, ' foi ALTERADA para ', NEW.nome_categoria)
+                    );
+        END$$
+    
+    DELIMITER ;
+
 
 

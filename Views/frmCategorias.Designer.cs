@@ -34,6 +34,7 @@
             btnAddCategoria = new Button();
             dgvCategorias = new DataGridView();
             btnDelete = new Button();
+            btnRenomear = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCategorias).BeginInit();
             SuspendLayout();
             // 
@@ -84,6 +85,7 @@
             dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCategorias.Size = new Size(419, 260);
             dgvCategorias.TabIndex = 4;
+            dgvCategorias.CellClick += dgvCategorias_CellClick;
             // 
             // btnDelete
             // 
@@ -95,12 +97,24 @@
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
+            // btnRenomear
+            // 
+            btnRenomear.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRenomear.Location = new Point(56, 283);
+            btnRenomear.Name = "btnRenomear";
+            btnRenomear.Size = new Size(223, 46);
+            btnRenomear.TabIndex = 8;
+            btnRenomear.Text = "Renomear";
+            btnRenomear.UseVisualStyleBackColor = true;
+            btnRenomear.Click += btnRenomear_Click;
+            // 
             // frmCategorias
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PaleGreen;
-            ClientSize = new Size(878, 312);
+            ClientSize = new Size(878, 509);
+            Controls.Add(btnRenomear);
             Controls.Add(btnDelete);
             Controls.Add(dgvCategorias);
             Controls.Add(btnAddCategoria);
@@ -123,5 +137,6 @@
         private Button btnAddCategoria;
         private DataGridView dgvCategorias;
         private Button btnDelete;
+        private Button btnRenomear;
     }
 }
