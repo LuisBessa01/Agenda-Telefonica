@@ -66,7 +66,8 @@ namespace Agenda_Telefonica.Controller
             {
                 conexao = conexaoDB.Criarconexaomysql(SessionAgenda.usuario, SessionAgenda.senha);
 
-                string sql = "SELECT ID_contato as 'Código', "
+                string sql = @$"  SELECT ID_contato AS 'Código', nome_contato AS 'Nome', telefone_contato AS 'Telefone', categoria AS 'Categoria' FROM tb_contatos
+                                    WHERE usuario like '{SessionAgenda.usuario}%';";
             }
         }
     }
