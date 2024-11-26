@@ -27,7 +27,7 @@ namespace Agenda_Telefonica.Views
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-
+            lblBemVindo.Text = $"Seja bem vindo(a) {SessionAgenda.nome}";
         }
 
         private void frmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
@@ -47,16 +47,6 @@ namespace Agenda_Telefonica.Views
         {
             frmUsuarios formUsuarios = new frmUsuarios();
             formUsuarios.ShowDialog();
-        }
-
-        private void btnTeste_Click(object sender, EventArgs e)
-        {
-            SessionAgenda.usuario = txtTeste.Text;
-        }
-
-        private void btnTeste2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(SessionAgenda.usuario);
         }
     }
 }

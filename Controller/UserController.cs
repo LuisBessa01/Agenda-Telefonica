@@ -93,12 +93,13 @@ namespace Agenda_Telefonica.Controller
 
         public bool LoginUser(string usuario, string senha)
         {
+            MySqlConnection conexao = null;
             try
             {
                 // cria uma variavel que conecta na classe.função do arquivo conexaoDB
-                MySqlConnection conexao = conexaoDB.Criarconexaomysql();
+                conexao = conexaoDB.Criarconexaomysql();
 
-                string sql = "SELECT * FROM tb_usuarios WHERE usuario = @usuario AND BINARY SENHA = @senha;";
+                string sql = "SELECT usuario, senha, nome, telefone FROM tb_usuarios WHERE usuario = @usuario AND BINARY SENHA = @senha;";
                 conexao.Open();
 
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
@@ -110,12 +111,13 @@ namespace Agenda_Telefonica.Controller
 
                 if (resultado.Read())
                 {
-                    conexao.Close();
+                    SessionAgenda.usuario = resultado.GetString("usuario");
+                    SessionAgenda.senha = resultado.GetString("senha");
+                    SessionAgenda.nome = resultado.GetString("nome");   
                     return true;
                 }
                 else
                 {
-                    conexao.Close();
                     return false;
                 }
 
@@ -123,6 +125,10 @@ namespace Agenda_Telefonica.Controller
             catch
             {
                 return false;
+            }
+            finally
+            {
+                conexao.Close();
             }
         }
 

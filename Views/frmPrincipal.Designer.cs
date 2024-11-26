@@ -36,9 +36,7 @@
             btnCadastrarCategoria = new ToolStripMenuItem();
             btnCadastrarUsuarios = new ToolStripMenuItem();
             categoriasToolStripMenuItem = new ToolStripMenuItem();
-            txtTeste = new TextBox();
-            btnTeste = new Button();
-            btnTeste2 = new Button();
+            lblBemVindo = new Label();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,8 +46,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { arquivoToolStripMenuItem, editarToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(7, 3, 0, 3);
-            menuStrip1.Size = new Size(914, 30);
+            menuStrip1.Size = new Size(800, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -57,13 +54,13 @@
             // 
             arquivoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sairToolStripMenuItem });
             arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
-            arquivoToolStripMenuItem.Size = new Size(75, 24);
+            arquivoToolStripMenuItem.Size = new Size(61, 20);
             arquivoToolStripMenuItem.Text = "&Arquivo";
             // 
             // sairToolStripMenuItem
             // 
             sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            sairToolStripMenuItem.Size = new Size(117, 26);
+            sairToolStripMenuItem.Size = new Size(93, 22);
             sairToolStripMenuItem.Text = "&Sair";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
@@ -71,76 +68,53 @@
             // 
             editarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cadastrarToolStripMenuItem });
             editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            editarToolStripMenuItem.Size = new Size(62, 24);
+            editarToolStripMenuItem.Size = new Size(49, 20);
             editarToolStripMenuItem.Text = "&Editar";
             // 
             // cadastrarToolStripMenuItem
             // 
             cadastrarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { btnCadastrarCategoria, btnCadastrarUsuarios, categoriasToolStripMenuItem });
             cadastrarToolStripMenuItem.Name = "cadastrarToolStripMenuItem";
-            cadastrarToolStripMenuItem.Size = new Size(155, 26);
+            cadastrarToolStripMenuItem.Size = new Size(124, 22);
             cadastrarToolStripMenuItem.Text = "&Cadastrar";
             // 
             // btnCadastrarCategoria
             // 
             btnCadastrarCategoria.Name = "btnCadastrarCategoria";
-            btnCadastrarCategoria.Size = new Size(192, 26);
+            btnCadastrarCategoria.Size = new Size(154, 22);
             btnCadastrarCategoria.Text = "Ca&tegorias";
             btnCadastrarCategoria.Click += btnCadastrarCategoria_Click;
             // 
             // btnCadastrarUsuarios
             // 
             btnCadastrarUsuarios.Name = "btnCadastrarUsuarios";
-            btnCadastrarUsuarios.Size = new Size(192, 26);
+            btnCadastrarUsuarios.Size = new Size(154, 22);
             btnCadastrarUsuarios.Text = "&Usuários";
             btnCadastrarUsuarios.Click += btnCadastrarUsuarios_Click;
             // 
             // categoriasToolStripMenuItem
             // 
             categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            categoriasToolStripMenuItem.Size = new Size(192, 26);
+            categoriasToolStripMenuItem.Size = new Size(154, 22);
             categoriasToolStripMenuItem.Text = "maisoutracoisa";
             // 
-            // txtTeste
+            // lblBemVindo
             // 
-            txtTeste.Location = new Point(157, 176);
-            txtTeste.Margin = new Padding(3, 4, 3, 4);
-            txtTeste.Name = "txtTeste";
-            txtTeste.Size = new Size(114, 27);
-            txtTeste.TabIndex = 1;
-            // 
-            // btnTeste
-            // 
-            btnTeste.Location = new Point(509, 245);
-            btnTeste.Margin = new Padding(3, 4, 3, 4);
-            btnTeste.Name = "btnTeste";
-            btnTeste.Size = new Size(86, 31);
-            btnTeste.TabIndex = 2;
-            btnTeste.Text = "button1";
-            btnTeste.UseVisualStyleBackColor = true;
-            btnTeste.Click += btnTeste_Click;
-            // 
-            // btnTeste2
-            // 
-            btnTeste2.Location = new Point(218, 321);
-            btnTeste2.Name = "btnTeste2";
-            btnTeste2.Size = new Size(90, 54);
-            btnTeste2.TabIndex = 3;
-            btnTeste2.Text = "button2";
-            btnTeste2.UseVisualStyleBackColor = true;
-            btnTeste2.Click += btnTeste2_Click;
+            lblBemVindo.AutoSize = true;
+            lblBemVindo.Location = new Point(101, 62);
+            lblBemVindo.Name = "lblBemVindo";
+            lblBemVindo.Size = new Size(38, 15);
+            lblBemVindo.TabIndex = 1;
+            lblBemVindo.Text = "label1";
             // 
             // frmPrincipal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
-            Controls.Add(btnTeste2);
-            Controls.Add(btnTeste);
-            Controls.Add(txtTeste);
+            ClientSize = new Size(800, 450);
+            Controls.Add(lblBemVindo);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "frmPrincipal";
             Text = "frmPrincipal";
             FormClosed += frmPrincipal_FormClosed;
@@ -161,8 +135,6 @@
         private ToolStripMenuItem sairToolStripMenuItem;
         private ToolStripMenuItem btnCadastrarCategoria;
         private ToolStripMenuItem btnCadastrarUsuarios;
-        private TextBox txtTeste;
-        private Button btnTeste;
-        private Button btnTeste2;
+        private Label lblBemVindo;
     }
 }

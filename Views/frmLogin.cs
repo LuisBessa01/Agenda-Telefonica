@@ -54,9 +54,6 @@ namespace Agenda_Telefonica
 
             if (sucesso == true)
             {
-
-                SessionAgenda.usuario = txtUsuario.Text;
-                SessionAgenda.senha = txtSenha.Text;
                 //SessionAgenda.nome
                 frmPrincipal formPrincipal = new frmPrincipal();
                 this.Hide();
