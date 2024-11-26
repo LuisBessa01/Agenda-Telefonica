@@ -48,5 +48,11 @@ namespace Agenda_Telefonica.Views
             frmUsuarios formUsuarios = new frmUsuarios();
             formUsuarios.ShowDialog();
         }
+
+        private void btnAgendaStripMenu_Click(object sender, EventArgs e)
+        {
+            frmContatos formContatos = new frmContatos();  
+            formContatos.ShowDialog();
+        }
     }
 }
