@@ -67,7 +67,7 @@ namespace Agenda_Telefonica.Controller
 
                 // codigo a ser inserido no mysql para exibir todos os dados da tabela
                 string sql = @$"SELECT ID_categoria AS 'Código', nome_categoria AS 'Categorias' FROM tb_categorias 
-                                WHERE usuario LIKE '{SessionAgenda.usuario}%';";
+                                WHERE usuario LIKE '{SessionAgenda.usuario}@%';";
 
                 conexao.Open();
 

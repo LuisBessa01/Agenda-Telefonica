@@ -67,7 +67,65 @@ namespace Agenda_Telefonica.Controller
                 conexao = conexaoDB.Criarconexaomysql(SessionAgenda.usuario, SessionAgenda.senha);
 
                 string sql = @$"  SELECT ID_contato AS 'Código', nome_contato AS 'Nome', telefone_contato AS 'Telefone', categoria AS 'Categoria' FROM tb_contatos
-                                    WHERE usuario like '{SessionAgenda.usuario}%';";
+                                    WHERE usuario like '{SessionAgenda.usuario}@%';";
+
+                conexao.Open();
+
+                MySqlDataAdapter adaptador = new MySqlDataAdapter(sql, conexao);
+
+                DataTable tabela = new DataTable();
+
+                adaptador.Fill(tabela);
+
+                return tabela;
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"erro ao recuperar contatos: {erro.Message}");
+
+                return new DataTable();
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
+
+        public bool DelContact(int IdContato)
+        {
+            MySqlConnection conexao = null;
+            try
+            {
+                conexao = conexaoDB.Criarconexaomysql(SessionAgenda.usuario, SessionAgenda.senha);
+
+                string sql = @$"DELETE FROM tb_contatos 
+	                                WHERE ID_contato = @IdContato;";
+
+                conexao.Open();
+
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                comando.Parameters.AddWithValue("@IdContato", IdContato);
+
+                int quantidadeAfetada = comando.ExecuteNonQuery();
+
+                if ( quantidadeAfetada > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao deletar o contato:{erro.Message}");
+                return false;
+            }
+            finally
+            {
+                conexao.Close();
             }
         }
     }

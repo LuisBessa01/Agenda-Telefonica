@@ -13,24 +13,60 @@ namespace Agenda_Telefonica.Views
 {
     public partial class frmContatos : Form
     {
+        int celulaID;
         private void AttTabela()
         {
             CategoryController controleCategoria = new CategoryController();
-            DataTable tabela = controleCategoria.GetCategorias();
-            dgvCategorias.DataSource = tabela;
+            DataTable tabelaCategorias = controleCategoria.GetCategorias();
+
+            cbxCategorias.DataSource = tabelaCategorias;
+            cbxCategorias.DisplayMember = "Categorias";
+            cbxCategorias.ValueMember = "Categorias";
+
+            ContactsController controleContatos = new ContactsController();
+            DataTable tabelaContatos = controleContatos.GetContacts();
+
+            dgvContatos.DataSource = tabelaContatos;
+
         }
         public frmContatos()
         {
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
 
         private void frmContatos_Load(object sender, EventArgs e)
         {
+            AttTabela();
+        }
+
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            ContactsController controleContatos = new ContactsController();
+
+            controleContatos.AddContact(txtNomeContato.Text, txtTelefoneContato.Text, cbxCategorias.ValueMember);
+
+            AttTabela();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            this.celulaID = Convert.ToInt32(dgvContatos.SelectedRows[0].Cells["Código"].Value);
+
+            ContactsController controleContatos = new ContactsController();
+
+            bool sucesso = controleContatos.DelContact(celulaID);
+
+            if (sucesso == true)
+            {
+                MessageBox.Show("Contato deletado com sucesso");
+            }
+            else
+            {
+                MessageBox.Show("Houve um erro ao deletar o contato");
+            }
+
             AttTabela();
         }
     }
