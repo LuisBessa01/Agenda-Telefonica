@@ -45,7 +45,7 @@ namespace Agenda_Telefonica.Views
         {
             ContactsController controleContatos = new ContactsController();
 
-            controleContatos.AddContact(txtNomeContato.Text, txtTelefoneContato.Text, cbxCategorias.ValueMember);
+            controleContatos.AddContact(txtNomeContato.Text, txtTelefoneContato.Text, cbxCategorias.Text);
 
             AttTabela();
         }
@@ -65,6 +65,26 @@ namespace Agenda_Telefonica.Views
             else
             {
                 MessageBox.Show("Houve um erro ao deletar o contato");
+            }
+
+            AttTabela();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            this.celulaID = Convert.ToInt32(dgvContatos.SelectedRows[0].Cells["Código"].Value);
+
+            ContactsController controleContatos = new ContactsController();
+
+            bool sucesso = controleContatos.UpdateContact(celulaID, txtNomeContato.Text, txtTelefoneContato.Text, cbxCategorias.Text);
+
+            if (sucesso == true)
+            {
+                MessageBox.Show("Contato atualizado com sucesso");
+            }
+            else
+            {
+                MessageBox.Show("Houve um erro ao atualizar o contato");
             }
 
             AttTabela();

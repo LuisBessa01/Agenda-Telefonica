@@ -1,0 +1,22 @@
+1 - Estrutura do banco de dados
+	Criação das tabelas
+	Triggers para inserir usuario
+	Triggers para log
+
+2 - Tela de login
+	Cadastro de usuario
+	Possibilidade de logar
+	Ao acessar a tela principal mostra o nome do usuario
+
+3 - Tela de categorias
+	Inserir categorias
+	Alterar categorias
+	Excluir categorias
+	Mostrar as categorias ao abrir a tela
+	Mostrar apenas as categorias do usuario conectado
+
+4 - Tela de contatos
+	Mostrar contatos cadastrados pelo usuario
+	Inserir contatos
+	Alterar contatos
+	Excluir contatos

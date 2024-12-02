@@ -94,6 +94,7 @@
             btnEditar.TabIndex = 6;
             btnEditar.Text = "EDITAR";
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // label1
             // 

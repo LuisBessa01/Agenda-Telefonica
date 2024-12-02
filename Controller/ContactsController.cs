@@ -128,5 +128,48 @@ namespace Agenda_Telefonica.Controller
                 conexao.Close();
             }
         }
+
+        public bool UpdateContact(int idContato, string nomeContato, string telefoneContato, string categoriaContato)
+        {
+            MySqlConnection conexao = null;
+            try
+            {
+                conexao = conexaoDB.Criarconexaomysql(SessionAgenda.usuario, SessionAgenda.senha);
+
+                string sql = @$"UPDATE tb_contatos
+                                SET nome_contato = @nomeContato,
+                                    telefone_contato = @telefoneContato,
+                                    categoria = @categoriaContato
+                                WHERE ID_contato = @idContato;";
+                conexao.Open();
+
+                MySqlCommand comando = new MySqlCommand(sql, conexao);
+
+                comando.Parameters.AddWithValue("@idContato", idContato);
+                comando.Parameters.AddWithValue("@nomeContato", nomeContato);
+                comando.Parameters.AddWithValue("@telefoneContato", telefoneContato);
+                comando.Parameters.AddWithValue("@categoriaContato", categoriaContato);
+
+                int quantidadeAfetada = comando.ExecuteNonQuery();
+
+                if (quantidadeAfetada > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show($"Erro ao atualizar o contato:{erro.Message}");
+                return false;
+            }
+            finally
+            {
+                conexao.Close();
+            }
+        }
     }
 }

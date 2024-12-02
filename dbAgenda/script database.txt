@@ -24,8 +24,29 @@ CREATE TRIGGER tg_insert_categoria
 		BEGIN
 			SET NEW.usuario = USER();
 		END$$
-        
+          
 DELIMITER ;
+
+CREATE TABLE IF NOT EXISTS tb_contatos (
+	ID_contato INT PRIMARY KEY AUTO_INCREMENT,
+    nome_contato VARCHAR(50),
+    telefone_contato VARCHAR(15),
+    categoria VARCHAR(50),
+    usuario VARCHAR(50)
+    );
+    
+DELIMITER $$
+CREATE TRIGGER tg_insert_contatos
+	BEFORE
+	INSERT
+	ON tb_contatos
+	FOR EACH ROW
+		BEGIN
+			SET NEW.usuario = USER();
+		END$$
+          
+DELIMITER ;
+      
 
 CREATE TABLE IF NOT EXISTS tb_log (
 	ID_log int primary key auto_increment,
@@ -64,20 +85,59 @@ CREATE TRIGGER tg_log_insert_categoria
                 );
     END$$
     
-    CREATE TRIGGER tb_log_update_categoria
-		AFTER
-        UPDATE
-        ON tb_categorias
-        FOR EACH ROW
-        BEGIN
-			INSERT INTO tb_log (usuario, data_hora, descricao)
-				VALUES(
-					USER(),
-                    CURRENT_TIMESTAMP(),
-                    CONCAT('A categoria ', OLD.nome_categoria, ' foi ALTERADA para ', NEW.nome_categoria)
-                    );
-        END$$
+CREATE TRIGGER tb_log_update_categoria
+	AFTER
+	UPDATE
+	ON tb_categorias
+	FOR EACH ROW
+	BEGIN
+		INSERT INTO tb_log (usuario, data_hora, descricao)
+			VALUES(
+				USER(),
+				CURRENT_TIMESTAMP(),
+				CONCAT('A categoria ', OLD.nome_categoria, ' foi ALTERADA para ', NEW.nome_categoria)
+				);
+	END$$
     
+CREATE TRIGGER tb_log_inserir_contatos
+	AFTER
+	INSERT
+	ON tb_contatos
+    FOR EACH ROW
+	BEGIN
+		INSERT INTO tb_log (usuario, data_hora, descricao)
+			VALUES(
+				USER(),
+				CURRENT_TIMESTAMP(),
+				CONCAT('O contato ', NEW.nome_contato, ' foi ADICIONADO')
+				);
+	END $$
+                    
+CREATE TRIGGER tb_log_deletar_contatos
+	AFTER
+    DELETE
+    ON tb_contatos
+    FOR EACH ROW
+    BEGIN
+		INSERT INTO tb_log (usuario, data_hora, descricao)
+			VALUES(
+				USER(),
+                CURRENT_TIMESTAMP(),
+                CONCAT('O contato ', OLD.nome_contato, ' foi EXCLUIDO')
+                );
+	END$$
+    
+CREATE TRIGGER tb_log_update_contatos
+	AFTER
+    UPDATE
+    ON tb_contatos
+    FOR EACH ROW
+    BEGIN
+		INSERT INTO  tb_log (usuario, data_hora, descricao)
+			VALUES(
+				USER(),
+                CURRENT_TIMESTAMP(),
+                CONCAT('O contato ', OLD.nome_contato, ' foi ALTERADO para ', NEW.nome_contato
     DELIMITER ;
 
 
