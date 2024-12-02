@@ -137,7 +137,9 @@ CREATE TRIGGER tb_log_update_contatos
 			VALUES(
 				USER(),
                 CURRENT_TIMESTAMP(),
-                CONCAT('O contato ', OLD.nome_contato, ' foi ALTERADO para ', NEW.nome_contato
+                CONCAT('O contato ', OLD.nome_contato, ' foi ALTERADO para ', NEW.nome_contato)
+                );
+    END$$
     DELIMITER ;
 
 
