@@ -13,6 +13,7 @@ namespace Agenda_Telefonica.Controller
 {
     internal class UserController
     {
+        //Adiciona um usuário no banco de dados e retorna se funcionou
         public bool AddUser(string nome, string usuario, string telefone, string senha)
         {
             MySqlConnection conexao = null;
@@ -21,13 +22,14 @@ namespace Agenda_Telefonica.Controller
                 // cria uma variavel que conecta na classe.função do arquivo conexaoDB
                 conexao = conexaoDB.Criarconexaomysql();
 
-                //inserir dados na tabela do sql
+                // Linha de comando que será executada no sql
                 string sql = @$"INSERT INTO tb_usuarios(nome, usuario, telefone, senha) VALUES (@nome, @usuario, @telefone, @senha);";
 
                 conexao.Open();
 
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
+                // subsitui os @ pelos parametros do método
                 comando.Parameters.AddWithValue("@nome", nome);
                 comando.Parameters.AddWithValue("@usuario", usuario);
                 comando.Parameters.AddWithValue("@telefone", telefone);
@@ -48,11 +50,15 @@ namespace Agenda_Telefonica.Controller
                 }
 
             }
+
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"Erro ao efetuar o cadastro:{erro.Message}");
                 return false;
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será 
             finally
             {
                 conexao.Close();
@@ -60,6 +66,8 @@ namespace Agenda_Telefonica.Controller
 
         }
 
+
+        //Cria um usuário na tabela mysql.user e retorna se funcionou
         private bool CreateUser (string usuario, string senha)
         {
             MySqlConnection conexao = null;
@@ -79,11 +87,15 @@ namespace Agenda_Telefonica.Controller
 
                 return true;
             }
+
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"Erro ao efetuar o cadastro:{erro.Message}");
                 return false;
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
@@ -91,6 +103,8 @@ namespace Agenda_Telefonica.Controller
 
         }
 
+        //Realiza o login do usuário, passando seu usuário senha e nome para as variaveis da classe SessionAgenda
+        //retorna se funcionou
         public bool LoginUser(string usuario, string senha)
         {
             MySqlConnection conexao = null;
@@ -104,6 +118,7 @@ namespace Agenda_Telefonica.Controller
 
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
+                // subsitui os @ pelos parametros do método
                 comando.Parameters.AddWithValue("@usuario", usuario);
                 comando.Parameters.AddWithValue("@senha", senha);
 
@@ -122,16 +137,21 @@ namespace Agenda_Telefonica.Controller
                 }
 
             }
+
+            //Caso ocorra um erro o catch será executado
             catch
             {
                 return false;
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
             }
         }
 
+        //Pega os usuarios do banco de dados as retorna no formato de dataTable
         public DataTable GetUsers()
         {
             MySqlConnection conexao = null;
@@ -151,18 +171,23 @@ namespace Agenda_Telefonica.Controller
 
                 return tabela;
             }
+
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"erro ao recuperar categorias: {erro.Message}");
 
                 return new DataTable();
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
             }
         }
 
+        //Deleta um usuario do banco de dados e retorna se funcionou
         public bool DelUser(string usuario)
         {
             MySqlConnection conexao = null;
@@ -177,6 +202,7 @@ namespace Agenda_Telefonica.Controller
 
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
+                // subsitui os @ pelos parametros do método
                 comando.Parameters.AddWithValue("@usuario", usuario);
 
                 int quantidadeAfetada = comando.ExecuteNonQuery();
@@ -190,17 +216,22 @@ namespace Agenda_Telefonica.Controller
                     return false;
                 }
             }
+
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"Erro ao deletar o usuario: {erro.Message}");
                 return false;
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
             }
         }
 
+        //Atualiza a senha de um usuário do banco de dados e retorna se funcionou
         public bool ModSenha (string usuario, string novaSenha)
         {
             MySqlConnection conexao = null;
@@ -228,11 +259,15 @@ namespace Agenda_Telefonica.Controller
                     return false;
                 }
             }
+
+            //Caso ocorra um erro o catch será executado
             catch ( Exception erro )
             {
                 MessageBox.Show($"erro ao alterar senha:{erro.Message}");
                 return false;
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();

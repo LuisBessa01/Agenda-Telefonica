@@ -51,8 +51,13 @@ namespace Agenda_Telefonica.Views
 
         private void btnAgendaStripMenu_Click(object sender, EventArgs e)
         {
-            frmContatos formContatos = new frmContatos();  
+            frmContatos formContatos = new frmContatos();
             formContatos.ShowDialog();
+        }
+
+        private void lblBemVindo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,6 +13,10 @@ namespace Agenda_Telefonica.GlobalVar
         static private string _senha = null;
         static private string _nome = null;
 
+        //métodos get/set dependendo da forma ao chamar o método realiza diferentes comandos
+
+        //método GET: SessionAgenda.nome        --> pega o valor da variavel
+        //método SET: SessionAgenda.nome = X    --> designa um valor para a variavel
         static public string usuario
         {
             get { return _usuario; }

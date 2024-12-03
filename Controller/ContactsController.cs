@@ -13,6 +13,8 @@ namespace Agenda_Telefonica.Controller
 {
     internal class ContactsController
     {
+        //Adiciona um contato no banco de dados e retorna se funcionou
+
         public bool AddContact(string nome, string telefone, string categoria)
         {
             MySqlConnection conexao = null;
@@ -20,6 +22,7 @@ namespace Agenda_Telefonica.Controller
             {
                 conexao = conexaoDB.Criarconexaomysql(SessionAgenda.usuario, SessionAgenda.senha);
 
+                // Linha de comando que será executada no sql
                 string sql = @$"INSERT INTO tb_contatos (nome_contato, telefone_contato, categoria)
 	                                VALUES (
 		                                @nome,
@@ -31,6 +34,7 @@ namespace Agenda_Telefonica.Controller
 
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
+                // subsitui os @ pelos parametros do método
                 comando.Parameters.AddWithValue("@nome", nome);
                 comando.Parameters.AddWithValue("@telefone", telefone);
                 comando.Parameters.AddWithValue("@categoria", categoria);
@@ -47,11 +51,14 @@ namespace Agenda_Telefonica.Controller
                 }
             }
 
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"Erro ao criar contato:{erro.Message}");
                 return false;
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
@@ -59,6 +66,7 @@ namespace Agenda_Telefonica.Controller
 
         }
 
+        //Pega os contatos do banco de dados as retorna no formato de dataTable
         public DataTable GetContacts()
         {
             MySqlConnection conexao = null;
@@ -79,18 +87,23 @@ namespace Agenda_Telefonica.Controller
 
                 return tabela;
             }
+
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"erro ao recuperar contatos: {erro.Message}");
 
                 return new DataTable();
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
             }
         }
 
+        //Deleta um contato do banco de dados e retorna se funcionou
         public bool DelContact(int IdContato)
         {
             MySqlConnection conexao = null;
@@ -105,6 +118,7 @@ namespace Agenda_Telefonica.Controller
 
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
+                // subsitui os @ pelos parametros do método
                 comando.Parameters.AddWithValue("@IdContato", IdContato);
 
                 int quantidadeAfetada = comando.ExecuteNonQuery();
@@ -118,17 +132,22 @@ namespace Agenda_Telefonica.Controller
                     return false;
                 }
             }
+
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"Erro ao deletar o contato:{erro.Message}");
                 return false;
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
             }
         }
 
+        //Atualiza as informações de um contato do banco de dados e retorna se funcionou
         public bool UpdateContact(int idContato, string nomeContato, string telefoneContato, string categoriaContato)
         {
             MySqlConnection conexao = null;
@@ -145,6 +164,7 @@ namespace Agenda_Telefonica.Controller
 
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
+                // subsitui os @ pelos parametros do método
                 comando.Parameters.AddWithValue("@idContato", idContato);
                 comando.Parameters.AddWithValue("@nomeContato", nomeContato);
                 comando.Parameters.AddWithValue("@telefoneContato", telefoneContato);
@@ -161,11 +181,15 @@ namespace Agenda_Telefonica.Controller
                     return false;
                 }
             }
+
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"Erro ao atualizar o contato:{erro.Message}");
                 return false;
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();

@@ -12,25 +12,26 @@ namespace Agenda_Telefonica.Controller
 {
     internal class CategoryController
     {
+        //Adiciona uma categoria no banco de dados e retorna se funcionou
         public bool AddCategory(string nomeCategoria)
         {
             MySqlConnection conexao = null;
             try
             {
-                // cria uma variavel que conecta na classe.função do arquivo conexaoDB
+                // Uma variavel se conecta na classe.função do arquivo conexaoDB
                 conexao = conexaoDB.Criarconexaomysql(SessionAgenda.usuario, SessionAgenda.senha);
 
-                // insere os dados na tabela de categoria
+                // Linha de comando que será executada no sql
                 string sql = "INSERT INTO tb_categorias (nome_categoria) VALUES (@categoria);";
 
                 conexao.Open();
 
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
-                // subsitui os @ pelos parametros da função
+                // subsitui os @ pelos parametros do método
                 comando.Parameters.AddWithValue("@categoria", nomeCategoria);
 
-                // executa o comando e retorna quantas linhas do db foi afetada
+                // executa o comando e retorna quantas linhas do banco de dados foi afetada
                 int quantidadeAfetada = comando.ExecuteNonQuery();
 
 
@@ -44,18 +45,20 @@ namespace Agenda_Telefonica.Controller
                     return false;
                 }
             }
-
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"Erro ao criar categoria:{erro.Message}");
                 return false;
             }
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
             }
         }
 
+        //Pega as categorias do banco de dados as retorna no formato de dataTable
         public DataTable GetCategorias()
         {
             MySqlConnection conexao = null;
@@ -82,18 +85,22 @@ namespace Agenda_Telefonica.Controller
 
                 return tabela;
             }
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"erro ao recuperar categorias: {erro.Message}");
 
                 return new DataTable();
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
             }
         }
 
+        //Deleta uma categoria do banco de dados e retorna se funcionou
         public bool DelCategoria(int idCategoria)
         {
             MySqlConnection conexao = null;
@@ -108,8 +115,10 @@ namespace Agenda_Telefonica.Controller
 
                 MySqlCommand comando = new MySqlCommand(sql, conexao);
 
+                // subsitui os @ pelos parametros do método
                 comando.Parameters.AddWithValue("@idCategoria", idCategoria);
 
+                // executa o comando e retorna quantas linhas do banco de dados foi afetada
                 int quantidadeAfetada = comando.ExecuteNonQuery();
 
                 if (quantidadeAfetada > 0)
@@ -121,17 +130,22 @@ namespace Agenda_Telefonica.Controller
                     return false;
                 }
             }
+
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"Erro ao deletar a categoria:{erro.Message}");
                 return false;
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
             }
         }
 
+        //Atualiza as informações de uma categoria do banco de dados e retorna se funcionou
         public bool UpdateCategoria(int idCategoria, string nomeCategoria)
         {
             MySqlConnection conexao = null;
@@ -147,9 +161,12 @@ namespace Agenda_Telefonica.Controller
 
                 MySqlCommand comando = new MySqlCommand (sql, conexao);
 
+                // subsitui os @ pelos parametros do método
                 comando.Parameters.AddWithValue("idCategoria", idCategoria);
                 comando.Parameters.AddWithValue("@nomeCategoria", nomeCategoria);
 
+
+                // executa o comando e retorna quantas linhas do banco de dados foi afetada
                 int quantidadeAfetada = comando.ExecuteNonQuery();
 
                 if (quantidadeAfetada > 0)
@@ -161,11 +178,15 @@ namespace Agenda_Telefonica.Controller
                     return false;
                 }
             }
+
+            //Caso ocorra um erro o catch será executado
             catch (Exception erro)
             {
                 MessageBox.Show($"Erro ao atualizar a categoria:{erro.Message}");
                 return false;
             }
+
+            //Independente se ocorreu um erro ou nãl o finally será executado
             finally
             {
                 conexao.Close();
