@@ -74,6 +74,12 @@ namespace Agenda_Telefonica.Views
         {
             this.celulaID = Convert.ToInt32(dgvContatos.SelectedRows[0].Cells["Código"].Value);
 
+            string nomeContato = dgvContatos.SelectedRows[0].Cells["Nome"].Value.ToString();
+            txtNomeContato.Text = nomeContato;
+
+            string telefoneContato = dgvContatos.SelectedRows[0].Cells["Telefone"].Value.ToString();
+            txtTelefoneContato.Text = telefoneContato;
+
             ContactsController controleContatos = new ContactsController();
 
             bool sucesso = controleContatos.UpdateContact(celulaID, txtNomeContato.Text, txtTelefoneContato.Text, cbxCategorias.Text);

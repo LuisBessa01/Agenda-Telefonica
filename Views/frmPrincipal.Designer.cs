@@ -38,7 +38,11 @@
             categoriasToolStripMenuItem = new ToolStripMenuItem();
             btnAgendaStripMenu = new ToolStripMenuItem();
             lblBemVindo = new Label();
+            pcbBoasVindas = new PictureBox();
+            arquivoToolStripMenuItem1 = new ToolStripMenuItem();
+            label1 = new Label();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pcbBoasVindas).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -54,7 +58,7 @@
             // 
             // arquivoToolStripMenuItem
             // 
-            arquivoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sairToolStripMenuItem });
+            arquivoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sairToolStripMenuItem, arquivoToolStripMenuItem1 });
             arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
             arquivoToolStripMenuItem.Size = new Size(75, 24);
             arquivoToolStripMenuItem.Text = "&Arquivo";
@@ -119,11 +123,38 @@
             lblBemVindo.Text = "boas vindas";
             lblBemVindo.Click += lblBemVindo_Click;
             // 
+            // pcbBoasVindas
+            // 
+            pcbBoasVindas.Image = Properties.Resources.emote_boas_vindas;
+            pcbBoasVindas.Location = new Point(444, 138);
+            pcbBoasVindas.Name = "pcbBoasVindas";
+            pcbBoasVindas.Size = new Size(384, 383);
+            pcbBoasVindas.SizeMode = PictureBoxSizeMode.Zoom;
+            pcbBoasVindas.TabIndex = 2;
+            pcbBoasVindas.TabStop = false;
+            // 
+            // arquivoToolStripMenuItem1
+            // 
+            arquivoToolStripMenuItem1.Name = "arquivoToolStripMenuItem1";
+            arquivoToolStripMenuItem1.Size = new Size(224, 26);
+            arquivoToolStripMenuItem1.Text = "&Arquivo";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(44, 169);
+            label1.Name = "label1";
+            label1.Size = new Size(352, 20);
+            label1.TabIndex = 3;
+            label1.Text = "para acessar sua agenda vá em editar aqui em cima";
+            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 600);
+            Controls.Add(label1);
+            Controls.Add(pcbBoasVindas);
             Controls.Add(lblBemVindo);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
@@ -135,6 +166,7 @@
             Load += frmPrincipal_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pcbBoasVindas).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -151,5 +183,8 @@
         private ToolStripMenuItem btnCadastrarUsuarios;
         private Label lblBemVindo;
         private ToolStripMenuItem btnAgendaStripMenu;
+        private PictureBox pcbBoasVindas;
+        private ToolStripMenuItem arquivoToolStripMenuItem1;
+        private Label label1;
     }
 }
